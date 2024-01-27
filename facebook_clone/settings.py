@@ -67,7 +67,7 @@ ROOT_URLCONF = "facebook_clone.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,6 +130,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -143,7 +151,7 @@ JAZZMIN_SETTINGS = {
     'copyright':  "All Right Reserved 2024",
     "welcome_sign": "Welcome to Facebook Clone Admin, Login Now.",
     "topmenu_links": [
-        
+
     ],
 
     "order_with_respect_to": [
