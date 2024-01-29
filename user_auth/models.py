@@ -73,14 +73,22 @@ class Profile(models.Model):
     friends = models.ManyToManyField(User, blank=True, related_name="friends")
     blocked = models.ManyToManyField(User, blank=True, related_name="blocked")
     date = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
 
 
     def __str__(self) -> str:
+        if self.user.full_name != "" or self.user.full_name != None:
+            return self.user.full_name
         return self.user.username
     
 
     def save(self, *args, **kwargs) -> None:
+        if self.full_name != self.user.full_name:
+            self.full_name = self.user.full_name
+
         if self.slug == "" or self.slug == None:
             self.slug = f"{slugify(self.full_name)}-{str(shortuuid.uuid()[:4].lower())}"
+        elif self.slug[:-5] != slugify(self.full_name):
+            self.slug = f"{slugify(self.full_name)}-{str(shortuuid.uuid()[:4].lower())}"
+        
         super(Profile, self).save(*args, **kwargs)
