@@ -1,0 +1,36 @@
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+from .models import User, Profile
+from django.utils.text import slugify
+import shortuuid
+
+
+# Create user profile when new user user is created
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+# Save the created user profile
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
+# Save full name in profile same as in User model
+
+@receiver(pre_save, sender=Profile)
+def save_full_name(sender, instance, *args, **kwargs):
+    if instance.full_name != instance.user.full_name:
+        instance.full_name = instance.user.full_name
+
+
+# Generate slug for profile
+
+@receiver(pre_save, sender=Profile)
+def generate_profile_slug(sender, instance, *args, **kwargs):
+    if instance.slug[:-5] != slugify(instance.full_name):
+        instance.slug = f"{slugify(instance.full_name)}-{str(shortuuid.uuid()[:4].lower())}"

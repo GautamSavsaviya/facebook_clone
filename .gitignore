@@ -1,3 +1,9 @@
+.idea
+
+
+# Django
+
+
 db.sqlite3
 
-demo.txt
+facebook_clone/.env
