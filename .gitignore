@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development settings
+# local_settings.py
+
+# Database
+db.sqlite3
+
+# Static files
+# staticfiles/
+
+# Media files
+# media/
+
+# Virtual environment
+venv/
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Logs and backups
+*.log
+*.bak
+*.swp
+
+# Ignore migration files, as they can be auto-generated
+**/migrations/*.py
+**/migrations/*.pyc
+
+
+# Demo files
+demo.txt
