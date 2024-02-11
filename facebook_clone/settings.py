@@ -151,7 +151,7 @@ AUTH_USER_MODEL  = "user_auth.User"
 JAZZMIN_SETTINGS = {
     'site_header': "Facebook Clone",
     'site_brand': "Connecting people together...",
-    # 'site_logo': "images/logo.png",
+    'site_logo': "images/logo.png",
     'copyright':  "All Right Reserved 2024",
     "welcome_sign": "Welcome to Facebook Clone Admin, Login Now.",
     "topmenu_links": [
